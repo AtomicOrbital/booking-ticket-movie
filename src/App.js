@@ -1,18 +1,32 @@
 import './App.css';
+import { createBrowserHistory } from 'history';
+import { Router,Switch } from 'react-router'
+import { HomeTemplate } from './teamplates/HomeTemplate/HomeTeamplate';
+import Home from './pages/Home/Home';
+import Contact from './pages/Home/Contact/Contact';
+import News from './pages/News/News';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+
+
+export const history = createBrowserHistory();
+
+
 
 function App() {
   return (
-    <div className="App">
-      <div className="container">
-        <div className="shadow-sm ..." >dsads</div>
-        <div className="shadow ..." >adsadas </div>
-        <div className="shadow-md ..." >dsad</div>
-        <div className="shadow-lg ..." > dsad</div>
-        <div className="shadow-xl ..." >dsada </div>
-        <div className="shadow-2xl ..." >dsada </div>
-      </div>
 
-    </div>
+    <Router history={history}>
+      <Switch>
+        <HomeTemplate path="/home" exact Component={Home} />
+        <HomeTemplate path="/contact" exact Component={Contact} />
+        <HomeTemplate path="/news" exact Component={News} />
+        <Route path="/login" exact Component={Login} />
+        <Route path="/register" exact Component={Register} />
+        <HomeTemplate path="/" exact Component={Home} />
+      </Switch>
+    </Router>
   );
 }
 
