@@ -19,7 +19,7 @@ export const HomeTemplate = (props) => { // path,exact,component
 
 
             <Component {...propsRoute} />
-
+            
 
 
 
