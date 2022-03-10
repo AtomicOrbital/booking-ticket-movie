@@ -6,7 +6,7 @@ import axios from 'axios';
 import { getCarouselAction } from '../../../../redux/actions/CarouselAction';
 
 const contentStyle = {
-    height: '600px',
+    height: '660px',
     color: '#fff',
     lineHeight: '160px',
     textAlign: 'center',
