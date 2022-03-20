@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
 import { getCarouselAction } from '../../../../redux/actions/CarouselAction';
+import './HomeCarousel.css'
 
 const contentStyle = {
-    height: '660px',
+    height: '680px',
     color: '#fff',
     lineHeight: '160px',
     textAlign: 'center',
