@@ -1,32 +1,43 @@
-import React, { useState } from 'react'
+import React, { Fragment } from 'react';
 import { Tabs, Radio, Space } from 'antd';
-
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import moment from 'moment';
 const { TabPane } = Tabs;
 
-export default function HomeMenu(props) {
-    const [state, setState] = useState({
-        tabPosition: 'left',
-    })
+export default class Demo extends React.PureComponent {
 
-    const changeTabPosition = e => {
-        setState({ tabPosition: e.target.value });
+
+    state = {
+        tabPosition: 'left',
     };
 
-    const { tabPosition } = state;
-    return (
-        <>
+    changeTabPosition = e => {
+        this.setState({ tabPosition: e.target.value });
+    };
+    componentDidMount() {
+        
+    }
 
-            <Tabs tabPosition={tabPosition}>
-                <TabPane tab={<img src='https://picsum.photos/200' className='rounded-full' width="50"></img>} key="1">
-                    Content of Tab 1
-                </TabPane>
-                <TabPane tab={<img src='https://picsum.photos/200' className='rounded-full' width="50"></img>} key="2">
-                    Content of Tab 2
-                </TabPane>
-                <TabPane tab={<img src='https://picsum.photos/200' className='rounded-full' width="50"></img>} key="3">
-                    Content of Tab 3
-                </TabPane>
-            </Tabs>
-        </>
-    )
+
+
+    render() {
+        console.log(this.props,'props123');
+        const { tabPosition } = this.state;
+        return (
+            <>
+                <Tabs tabPosition={tabPosition}>
+                    <TabPane tab={<img src='https://picsum.photos/200' className='rounded-full' width="50"></img>} key="1">
+                        Content of Tab 1
+                    </TabPane>
+                    <TabPane tab={<img src='https://picsum.photos/200' className='rounded-full' width="50"></img>} key="2">
+                        Content of Tab 2
+                    </TabPane>
+                    <TabPane tab={<img src='https://picsum.photos/200' className='rounded-full' width="50"></img>} key="3">
+                        Content of Tab 3
+                    </TabPane>
+                </Tabs>
+            </>
+        );
+    }
 }
