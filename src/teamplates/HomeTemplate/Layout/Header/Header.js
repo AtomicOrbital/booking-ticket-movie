@@ -8,7 +8,7 @@ export default function Header() {
         <header className="p-4 dark:bg-coolGray-800 dark:text-coolGray-100 bg-opacity-40 bg-black text-white fixed w-full z-10">
             <div className="container flex justify-between h-16 mx-auto">
                 <a rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex items-center p-2">
-                    <img src='./img/headTixLogo.png' alt='logo' className='h-20 '></img>
+                    <img src='https://phimapi.herokuapp.com/uploads/Logo.png' alt='logo' className='h-20 '></img>
 
                 </a>
                 <ul className="items-stretch hidden space-x-3 lg:flex">

@@ -8,14 +8,14 @@ export class QuanLyPhimService extends baseService{
     }
 
     layDanhSachBanner = () => {
-        return this.get(`api/QuanlyPhim/LayDanhSachBanner`);
+        return this.get(`/api/QuanLyPhim/LayDanhSachBanner`);
 
     }
 
     
 
     layDanhSachPhim = () => {
-        return this.get(`api/QuanlyPhim/`)
+        return this.get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUPID}`)
     }
 }
 
