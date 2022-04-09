@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import { Button, CustomCard } from '@tsamantanis/react-glassmorphism'
 import '@tsamantanis/react-glassmorphism/dist/index.css'
 import '../../assets/styles/circle.css'
-import { Tabs, Radio, Space } from 'antd';
+import { Tabs, Radio, Space, Rate } from 'antd';
 import { StarFilled, StarOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { SET_CHI_TIET_PHIM } from '../../redux/actions/types/QuanLyRapType';
 import { layThongTinChiTietPhim } from '../../redux/actions/QuanLyRapAction';
 import moment from 'moment';
+import { NavLink } from 'react-router-dom';
 const { TabPane } = Tabs;
 export default function Detail(props) {
 
@@ -43,10 +44,11 @@ export default function Detail(props) {
                                 <p className="text-3xl leading-3"> {filmDetail.tenPhim} </p>
                                 <p>{filmDetail.moTa}</p>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                     <div className='col-span-4'>
-                        <h1 style={{ marginLeft: '13%' }} className="text-green-400 text-2xl " ><StarOutlined /><StarOutlined /><StarOutlined /><StarOutlined /><StarOutlined /></h1>
+                        <h1 style={{ marginLeft: '15%', color: 'yellow', fontWeight: 'bold', fontSize: 15 }}>Đánh giá</h1>
+                        <h1 style={{ marginLeft: '5%' }} className="text-green-400 text-2xl"><Rate allowHalf value={filmDetail.danhGia / 2} style={{ color: '#78ed78', fontSize: 30 }} /></h1>
                         <div className={`c100 p${filmDetail.danhGia * 10} big`}>
                             <span className='text-white'>
                                 {filmDetail.danhGia * 10}%
@@ -56,23 +58,55 @@ export default function Detail(props) {
                                 <div className="fill" />
                             </div>
                         </div>
-        
+
                     </div>
                 </div>
 
-                <div className='mt-20 container' >
-                    <Tabs tabPosition={'left'}>
-                        <TabPane tab="Tab 1" key="1">
-                            Content of Tab 1
+                <div className='mt-20 ml-72 w-2/3 container bg-white px-5 py-5 '>
+                    <Tabs defaultActiveKey="1" centered>
+                        <TabPane tab="Lịch chiếu" key="1" style={{ minHeight: 300 }}>
+                            <div  >
+                                <Tabs tabPosition={'left'}>
+                                    {filmDetail.heThongRapChieu?.map((htr, index) => {
+                                        return <TabPane
+                                            tab={<div >
+                                                <img src={htr.logo} className='rounded-full' width="50" />
+                                                {htr.tenHeThongRap}
+                                            </div>}
+                                            key={index}>
+                                            {htr.cumRapChieu?.map((cumRap, index) => {
+                                                return <div className='mt-5' key={index}>
+                                                    <div className='flex flex-row'>
+                                                        <img style={{ width: 60, height: 60 }} src={'https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png'} />
+                                                        <div className='ml-2' >
+                                                            <p className={{fontSize:20, fontWeight:'bold', lineHeight:1 }}>{cumRap.tenCumRap}</p>
+                                                            <p className='text-gray-300' style={{marginTop:0}}>{cumRap.tenCumRap}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className='thong-tin-lich-chieu grid grid-cols-4'>
+                                                        {cumRap.lichChieuPhim?.map((lichChieu, index)=> {
+                                                            return <NavLink to="/" key={index} className='col-span-1 text-green-800 font-bold'>
+                                                                {moment(lichChieu.ngayChieuGioChieu).format('hh-mm A')}
+                                                            </NavLink>
+                                                        })}
+                                                    </div>
+                                                </div>
+                                            })}
+                                        </TabPane>
+                                    })}
+
+                                </Tabs>
+                            </div>
                         </TabPane>
-                        <TabPane tab="Tab 2" key="2">
-                            Content of Tab 2
+                        <TabPane tab="Thông tin " key="2">
+                            Thông tin
                         </TabPane>
-                        <TabPane tab="Tab 3" key="3">
-                            Content of Tab 3
+                        <TabPane tab="Đánh giá" key="3">
+                            Đánh giá
                         </TabPane>
                     </Tabs>
                 </div>
+
 
             </CustomCard>
 
