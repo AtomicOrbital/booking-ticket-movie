@@ -7,10 +7,10 @@ export default function Header() {
     return (
         <header className="p-4 dark:bg-coolGray-800 dark:text-coolGray-100 bg-opacity-40 bg-black text-white fixed w-full z-10">
             <div className="container flex justify-between h-16 mx-auto">
-                <a rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex items-center p-2">
+                <NavLink rel="noopener noreferrer" to="/" aria-label="Back to homepage" className="flex items-center p-2">
                     <img src='https://phimapi.herokuapp.com/uploads/Logo.png' alt='logo' className='h-20 '></img>
 
-                </a>
+                </NavLink>
                 <ul className="items-stretch hidden space-x-3 lg:flex">
                     <li className="flex">
                         <NavLink  to="/home" className="flex items-center px-4 -mb-1 border-b-2 border-transparent text-violet-400 dark:border-violet-400 text-white" activeClassName="border-b-2 border-white" >Home</NavLink>
