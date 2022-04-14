@@ -5,7 +5,7 @@ import { USER_LOGIN } from "../../util/settings/config";
 
 
 
- const CheckoutTemplate = (props) => { //path, exact, Component
+const CheckoutTemplate = (props) => { //path, exact, Component
 
     const { Component, ...restProps } = props;
 

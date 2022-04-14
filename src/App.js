@@ -9,7 +9,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import Detail from './pages/Detail/Detail';
-import {CheckoutTemplate}  from './teamplates/CheckoutTemplate/CheckoutTemplate';
+import CheckoutTemplate  from './teamplates/CheckoutTemplate/CheckoutTemplate';
 import Checkout from './pages/Checkout/Checkout';
 import { UserTemplate } from './teamplates/UserTemplate/UserTemplate';
 // import { Suspense, lazy } from 'react';
@@ -25,7 +25,7 @@ function App() {
 
     <Router history={history}>
       <Switch>
-        <HomeTemplate path="/home" exact Component={Home} />
+        <HomeTemplate path="/home" exact Component={Home} /> 
         <HomeTemplate path="/contact" exact Component={Contact} />
         <HomeTemplate path="/news" exact Component={News} />
         <HomeTemplate path="/detail/:id" exact Component={Detail} />
