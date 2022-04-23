@@ -1,9 +1,23 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { layChiTietPhongVeAction } from '../../redux/actions/QuanLyDatVeAction'
 import style from './Checkout.module.css';
 export default function Checkout(props) {
 
   const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
+
+  const { chiTietPhongVe } = useSelector(state => state.QuanLyDatVeReducer);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    //Gọi hàm tạo ra 1 async function
+    const action = layChiTietPhongVeAction(props.match.params.id);
+    // Dispatch function này đi
+    dispatch(action)
+  }, [])
+
+  console.log({chiTietPhongVe})
 
   return (
     <div className='min-h-screen mt-5'  >
@@ -11,7 +25,7 @@ export default function Checkout(props) {
         <div className='col-span-9' >
           <div className='flex flex-col items-center mt-5'>
 
-            <div className='bg-black w-full' style={{width:'80%',height:15}}>
+            <div className='bg-black w-full' style={{ width: '80%', height: 15 }}>
 
             </div>
             <div className={`${style['trapezoid']} text-center`}>
