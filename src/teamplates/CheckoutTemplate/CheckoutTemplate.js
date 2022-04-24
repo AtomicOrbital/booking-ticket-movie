@@ -1,6 +1,6 @@
 import { Fragment} from "react";
 import { Redirect, Route } from "react-router";
-import { USER_LOGIN } from "../../util/settings/config";
+import { USER, USER_LOGIN } from "../../util/settings/config";
 
 
 

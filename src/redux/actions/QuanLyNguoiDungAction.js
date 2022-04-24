@@ -1,6 +1,6 @@
 import { quanLyNguoiDungService } from "../../services/QuanLyNguoiDung"
 import { DANG_NHAP_ACTION } from "./types/QuanLyNguoiDungType";
-import {history} from '../../App'
+import { history } from '../../App'
 
 export const dangNhapAction = (thongTinDangNhap) => {
 
@@ -10,21 +10,21 @@ export const dangNhapAction = (thongTinDangNhap) => {
         try {
             const result = await quanLyNguoiDungService.dangNhap(thongTinDangNhap);
 
-            if (result.data.statusCode === 200) {
+            if (result.data.statusCode == 200) {
                 dispatch({
                     type: DANG_NHAP_ACTION,
                     thongTinDangNhap: result.data.content
                 });
                 // Chuyển hướng đăng nhập về trang trước đó
                 history.goBack();
-            }
-            
+                }
 
-            console.log('result', result);
-        } catch (error) {
-            console.log('error', error.response.data);
+
+                console.log('result', result.data.content);
+            } catch (error) {
+                console.log('error', error.response.data);
+            }
         }
-    }
 }
 
 

@@ -98,14 +98,15 @@ export default function Detail(props) {
                                 </Tabs>
                             </div>
                         </TabPane>
-                        <TabPane tab="Thông tin " key="2">
-                            Thông tin
+                        <TabPane tab="Mô tả " key="2" style={{ minHeight:200 }}>
+                            {filmDetail.moTa}
                         </TabPane>
                         <TabPane tab="Đánh giá" key="3">
                             Đánh giá
                         </TabPane>
                     </Tabs>
                 </div>
+                
 
 
             </CustomCard>
