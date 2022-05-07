@@ -1,11 +1,14 @@
 // import { render } from "@testing-library/react";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Route } from "react-router-dom";
 
 
 
 
 export const UserTemplate = (props) => { // path,exact,component
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      });
     const { Component, ...restProps } = props;
 
 

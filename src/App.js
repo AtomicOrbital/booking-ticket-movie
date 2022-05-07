@@ -31,8 +31,8 @@ function App() {
         <HomeTemplate path="/contact" exact Component={Contact} />
         <HomeTemplate path="/news" exact Component={News} />
         <HomeTemplate path="/detail/:id" exact Component={Detail} />
-        
-        <Route path="/register" exact Component={Register} />
+       
+        {/* <Route path="/register" exact component={Register} /> */}
 
         <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} />
 
@@ -41,7 +41,8 @@ function App() {
         <CheckoutTemplateLazy path="/checkout/:id" exact Component={Checkout} />
         </Suspense> */} 
         <UserTemplate path="/login" exact Component={Login} />
-
+        <UserTemplate path="/register" exact Component={Register} />
+        
         <HomeTemplate path="/" exact Component={Home} />
       </Switch>
     </Router>
