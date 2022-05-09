@@ -52,7 +52,7 @@ export default function Register(props) {
         <div className="flex items-center flex items-center  mt-4">
           
           <button className="px-10 py-4 ml-12 font-semibold cursor-pointer text-center focus:outline-none transition hover:shadow-2xl shadow hover:bg-indigo-700 rounded-full text-white bg-indigo-600 ">
-            Đăng nhập
+            Đăng ký
           </button>
         </div>
         <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
