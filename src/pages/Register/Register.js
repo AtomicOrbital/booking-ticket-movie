@@ -32,8 +32,8 @@ export default function Register(props) {
           <label htmlFor="text" className="absolute ml-5 top-0 text-lg text-gray-700 bg-white mt-2 -z-1 duration-300 origin-0">Email</label>
         </div>
         <div className="f-outline px-2 relative border rounded-lg focus-within:border-indigo-500">
-          <input name="soDienThoai" onChange={formik.handleChange} className="block p-2 w-full text-lg appearance-none focus:outline-none bg-transparent" />
-          <label htmlFor="soDienThoai" className="absolute ml-5 top-0 text-lg text-gray-700 bg-white mt-2 -z-1 duration-300 origin-0">Số điện thoại</label>
+          <input name="soDT" onChange={formik.handleChange} className="block p-2 w-full text-lg appearance-none focus:outline-none bg-transparent" />
+          <label htmlFor="soDT" className="absolute ml-5 top-0 text-lg text-gray-700 bg-white mt-2 -z-1 duration-300 origin-0">Số điện thoại</label>
         </div>
         <div className="f-outline px-2 relative border rounded-lg focus-within:border-indigo-500">
           <input type="text" name="taiKhoan" onChange={formik.handleChange} className="block p-2 w-full text-lg appearance-none focus:outline-none bg-transparent" />
