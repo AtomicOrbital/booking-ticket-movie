@@ -29,7 +29,7 @@ export default function Header() {
                 }} className="self-center px-8 py-3 rounded">{t('Signin')}</button>
                 <button onClick={() => {
                     history.push('/register')
-                }} className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-coolGray-900">{t('Signup ')}</button>
+                }} className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-coolGray-900">{t('Signup')}</button>
 
 
             </Fragment>

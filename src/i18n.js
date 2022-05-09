@@ -20,12 +20,9 @@ const resources = {
     chi: {
         translation: {
           "Signin": "登入",     
-          "Signup": "登錄",
-          
+          "Signup": "登錄",          
         },
       },
-     
-
   };
     
 

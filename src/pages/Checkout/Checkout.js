@@ -186,7 +186,14 @@ export default function CheckoutTab(props) {
   const dispatch = useDispatch();
 
   const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
-
+  useEffect(()=>{
+    return ()=> {
+        dispatch({
+            type:CHANGE_TAB_ACTIVE,
+            number:'1'
+        })
+    }
+},[])
   const operations = <Fragment>
     {!_.isEmpty(userLogin) ? <Fragment> <button onClick={() => {
       history.push('/profile')
@@ -204,7 +211,7 @@ export default function CheckoutTab(props) {
       // console.log('key', key)
       dispatch({
         type: CHANGE_TAB_ACTIVE,
-        number: '1'
+        number: key.toString()
       })
     }}>
       <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1" >
