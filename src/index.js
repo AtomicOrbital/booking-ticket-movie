@@ -11,7 +11,8 @@ import "antd/dist/antd.css";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
-
+//Import đa ngôn ngữ 
+import './i18n';
 
 
 ReactDOM.render(

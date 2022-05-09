@@ -8,7 +8,7 @@ import { USER, USER_LOGIN } from "../../util/settings/config";
 const CheckoutTemplate = (props) => { //path, exact, Component
     useEffect(() => {
         window.scrollTo(0, 0);
-      });
+    });
     const { Component, ...restProps } = props;
 
     if(!localStorage.getItem(USER_LOGIN)) {

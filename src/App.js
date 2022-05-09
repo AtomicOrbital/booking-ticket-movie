@@ -13,6 +13,7 @@ import CheckoutTemplate  from './teamplates/CheckoutTemplate/CheckoutTemplate';
 import Checkout from './pages/Checkout/Checkout';
 import { UserTemplate } from './teamplates/UserTemplate/UserTemplate';
 import Loading from './components/Loading/Loading';
+import Profile from './pages/Profile/Profile';
 // import { Suspense, lazy } from 'react';
 
 // const CheckoutTemplateLazy = lazy(() => import ('./teamplates/CheckoutTemplate/CheckoutTemplate'));
@@ -31,7 +32,8 @@ function App() {
         <HomeTemplate path="/contact" exact Component={Contact} />
         <HomeTemplate path="/news" exact Component={News} />
         <HomeTemplate path="/detail/:id" exact Component={Detail} />
-       
+        <HomeTemplate path="/profile" exact Component={Profile} />
+        
         {/* <Route path="/register" exact component={Register} /> */}
 
         <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} />

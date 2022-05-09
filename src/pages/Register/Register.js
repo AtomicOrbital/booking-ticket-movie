@@ -12,7 +12,6 @@ export default function Register(props) {
       matKhau: "",
       email: "",
       soDT: "",
-      maNhom: "",
       hoTen: "",
     },
     onSubmit: (values) => {

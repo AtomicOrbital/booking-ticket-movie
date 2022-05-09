@@ -14,7 +14,7 @@ export const QuanLyRapReducer = (state = stateDefault, action) => {
             return {...state};
         }
 
-        default: return {...state}
-            break;
+        default: return {...state};
+            
     }
 }
