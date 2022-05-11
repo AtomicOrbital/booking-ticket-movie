@@ -26,27 +26,27 @@ export const dangNhapAction = (thongTinDangNhap) => {
 }
 
 export const dangKyAction = (thongTinDangKy) => {
-    return async () => {
-      try {
-        const result = await quanLyNguoiDungService.dangKy(thongTinDangKy);
-        if (result.data.statusCode === 200) {
-          Swal.fire({
-            title: "Đăng ký thành công!",
-            icon: "success",
-            confirmButtonText: "Đăng nhập ngay",
-          });
-          history.goBack();
-        }
-      } catch (error) {
+  return async () => {
+    try {
+      const result = await quanLyNguoiDungService.dangKy(thongTinDangKy);
+      if (result.data.statusCode === 200) {
         Swal.fire({
-          title: "Error!",
-          text: error.response.data.content,
-          icon: "error",
-          confirmButtonText: "Try Again!",
+          title: "Đăng ký thành công!",
+          icon: "success",
+          confirmButtonText: "Đăng nhập ngay",
         });
+        history.goBack();
       }
-    };
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: error.response.data.content,
+        icon: "error",
+        confirmButtonText: "Try Again!",
+      });
+    }
   };
+};
 
 export const layThongTinNguoiDungAction = (thongTinDangNhap) => {
 

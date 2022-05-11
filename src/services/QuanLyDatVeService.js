@@ -8,7 +8,7 @@ export class QuanLyDatVeService  extends baseService{
     }
 
     layChiTietPhongVe = (maLichChieu) => { // mã lịch chiếu lấy từ url
-        return this.get(`/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`);
+        return this.get(`QuanLyDatVe/LayDanhSachPhongVe?maLichChieu=${maLichChieu}`);
     }
     
     // {
@@ -21,7 +21,7 @@ export class QuanLyDatVeService  extends baseService{
     //     ]
     //   }
     datVe = (thongTinDatVe = new ThongTinDatVe()) => { //thông tin đặt vé
-        return this.post(`/api/QuanLyDatVe/DatVe`,thongTinDatVe);
+        return this.post(`QuanLyDatVe/DatVe`,thongTinDatVe);
     }
   
 }
