@@ -43,7 +43,7 @@ const MultipleRowSlick = (props) => {
 
     const renderFilms = () => {
 
-        return props.arrFilm.slice(0, 12).map((item, index) => {
+        return props.arrFilm.slice(0, 10).map((item, index) => {
             return (<div className={`${styleSlick['width-item']}`} key={index} onClick={() => {
                 setTrailer(item.trailer);
             }} >
