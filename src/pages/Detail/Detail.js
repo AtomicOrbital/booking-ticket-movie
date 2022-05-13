@@ -39,9 +39,9 @@ export default function Detail(props) {
                     <div className='col-span-5 col-start-3'>
                         <div className='grid grid-cols-3'>
                             <img className='col-span-1' src={filmDetail.hinhAnh} style={{ width: '100%', height: 300 }} alt='123' />
-                            <div className="col-span-2 ml-5" style={{ marginTop: '25%' }}>
+                            <div className="col-span-2 ml-5" style={{ marginTop: '0%' }}>
                                 <p className="text-sm">Ngày chiếu: {moment(filmDetail.ngayKhoiChieu).format('DD.MM.YYYY')} </p>
-                                <p className="text-3xl leading-3"> {filmDetail.tenPhim} </p>
+                                <p className="text-xl leading-6"> {filmDetail.tenPhim} </p>
                                 <p>{filmDetail.moTa}</p>
                             </div>
                         </div>
@@ -101,9 +101,9 @@ export default function Detail(props) {
                         <TabPane tab="Mô tả " key="2" style={{ minHeight:200 }}>
                             {filmDetail.moTa}
                         </TabPane>
-                        <TabPane tab="Đánh giá" key="3">
+                        {/* <TabPane tab="Đánh giá" key="3">
                             Đánh giá
-                        </TabPane>
+                        </TabPane> */}
                     </Tabs>
                 </div>
                 

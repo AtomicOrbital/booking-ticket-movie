@@ -200,7 +200,7 @@ export default function CheckoutTab(props) {
     }}> <div style={{ width: 50, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="text-2xl ml-5 rounded-full bg-red-200">{userLogin.taiKhoan.substr(0, 1)}</div>Hello ! {userLogin.taiKhoan}</button> <button onClick={() => {
       localStorage.removeItem(USER_LOGIN);
       localStorage.removeItem(TOKEN);
-      history.push('/home');
+      history.push('/');
       window.location.reload();
     }} className="text-blue-800">{t('Đăng xuất')}</button> </Fragment> : ''}
 
