@@ -13,7 +13,6 @@ import {
 } from 'antd';
 import { useFormik } from 'formik'
 import moment from 'moment';
-
 import { themPhimUploadHinhAction } from '../../../../redux/actions/QuanLyPhimAction';
 import { useDispatch } from 'react-redux';
 import { GROUPID } from '../../../../util/settings/config';
@@ -27,6 +26,7 @@ const Addnew = () => {
     initialValues: {
       tenPhim: '',
       trailer: '',
+      moTa: '',
       ngayKhoiChieu: '',
       dangChieu: false,
       sapChieu: false,
@@ -129,13 +129,13 @@ const Addnew = () => {
       <Form.Item label="Ngày khởi chiếu">
         <DatePicker format={"DD/MM/YYYY"} onChange={handleChangeDatePicker} />
       </Form.Item>
-      <Form.Item label="Đang chiếu" valuePropName="checked">
+      <Form.Item label="Đang chiếu" >
         <Switch onChange={handleChangeSwitch('dangChieu')} />
       </Form.Item>
-      <Form.Item label="Sắp chiếu" valuePropName="checked">
+      <Form.Item label="Sắp chiếu" >
         <Switch onChange={handleChangeSwitch('sapChieu')} />
       </Form.Item>
-      <Form.Item label="Hot" valuePropName="checked">
+      <Form.Item label="Hot" >
         <Switch onChange={handleChangeSwitch('hot')} />
       </Form.Item>
 
