@@ -8,15 +8,18 @@ export class QuanLyPhimService extends baseService{
     }
 
     layDanhSachBanner = () => {
-        return this.get(`/api/Quanlyphim/LayDanhSachBanner`);
+        return this.get(`api/Quanlyphim/LayDanhSachBanner`);
 
     }
     layDanhSachPhim = () => {
-        return this.get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUPID}`);
+        return this.get(`api/QuanLyPhim/`);
     }
     themPhimUploadHinh = (formData) => {
-        return this.post(`/api/QuanLyPhim/ThemPhimUploadHinh`,formData);
+        return this.post(`api/QuanLyPhim/ThemPhim`,formData);
     } 
+    // layThongTinPhim = (maPhim) => {
+    //     return this.get(`api/QuanLyPhim`)
+    // }
 }
 
 

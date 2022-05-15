@@ -15,13 +15,22 @@ import { useFormik } from 'formik'
 import moment from 'moment';
 import { themPhimUploadHinhAction } from '../../../../redux/actions/QuanLyPhimAction';
 import { useDispatch } from 'react-redux';
-import { GROUPID } from '../../../../util/settings/config';
+import { DOMAIN, GROUPID } from '../../../../util/settings/config';
+import axios from 'axios';
+
 
 const Addnew = () => {
+  let formData = new FormData();
+  const url = 'https://phimapi.herokuapp.com/api/QuanLyPhim/ThemAnh'
+  const config = {
+            headers:{
+              'Content-Type': 'multipart/form-data'
+            }
+          }
   const [componentSize, setComponentSize] = useState('default');
   const [imgSrc, setImgSrc] = useState('');
   const dispatch = useDispatch()
-
+  const [file, setfile] = useState(null);
   const formik = useFormik({
     initialValues: {
       tenPhim: '',
@@ -32,21 +41,39 @@ const Addnew = () => {
       sapChieu: false,
       hot: false,
       danhGia: 0,
-      hinhAnh: {},
+      image: {},
     },
     onSubmit: (values) => {
       console.log('values', values);
-      values.maNhom = GROUPID;
+      // values.maNhom = GROUPID;
       //Tạo đối tượng formData =>  Đưa giá trị values từ formik vào formData
-      let formData = new FormData();
+      
       for (let key in values) {
-        if (key !== 'hinhAnh') {
+        if (key !== 'image') {
           formData.append(key, values[key]);
         }
         else {
-          formData.append('File', values.hinhAnh, values.hinhAnh.name);
+          formData.append('image', file);
+          
+          
+        axios
+          .post(url, formData, config)
+          .then((content)=>{
+              
+              console.log('link_Anh',content);
+              alert("Thêm ảnh thành công");
+          })
+          .catch((err) =>{
+            console.log('err',err);
+          })
         }
       }
+      // const config = { 
+      //   headers :{
+      //     'content-type':'multipart/form-data',
+      //   },
+      // };
+        
       //Gọi api gửi các giá trị formData về backend xử lý
       dispatch(themPhimUploadHinhAction(formData));
 
@@ -58,17 +85,20 @@ const Addnew = () => {
   const handleChangeDatePicker = (value) => {
     // console.log('datapickerchange',moment(value).format('DD/MM/YYYY'));
     let ngayKhoiChieu = moment(value).format('DD/MM/YYYY');
-    formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu);
+    // formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu);
+    formData.append('ngayKhoiChieu', ngayKhoiChieu);
   };
 
   const handleChangeSwitch = (name) => {
     return (value) => {
-      formik.setFieldValue(name, value)
+      // formik.setFieldValue(name, value)
+      formData.append('name', value);
     };
   };
   const handleChangeInputNumber = (name) => {
     return (value) => {
-      formik.setFieldValue(name, value);
+      // formik.setFieldValue(name, value);
+      formData.append('name', value);
     };
   };
 
@@ -77,21 +107,9 @@ const Addnew = () => {
   };
 
   const handleChangeFile = (e) => {
-    //Lấy file ra từ e
-    let file = e.target.files[0];
-    if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/gif' || file.type === 'image/png') {
-      //Tạo đối tượng để đọc file
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        // console.log(e.target.result);
-        setImgSrc(e.target.result);//Hình base 64
-
-      }
-      //Đem dữ liệu file lưu vào formik
-      formik.setFieldValue('hinhAnh', file);
+      setfile(e.target.files[0]);
     };
-  };
+
   return (
 
     <Form

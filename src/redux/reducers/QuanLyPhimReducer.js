@@ -38,8 +38,9 @@ const stateDefault = {
     dangChieu: true,
     sapChieu: true,
     arrFilmDefault: [],
+    filmDetail:{},
 
-    filmDetail:{}
+    thongTinPhim:{}
 }
 
 export const QuanLyPhimReducer = (state = stateDefault, action) => {
