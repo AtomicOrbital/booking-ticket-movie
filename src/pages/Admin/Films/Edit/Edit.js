@@ -19,47 +19,45 @@ import { GROUPID } from '../../../../util/settings/config';
 
 const Edit = () => {
   const [componentSize, setComponentSize] = useState('default');
-  const [imgSrc, setImgSrc] = useState('');
+  // const [imgSrc, setImgSrc] = useState('');
   const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: {
+      maPhim: '',
       tenPhim: '',
+      hinhAnh: '',
       trailer: '',
       moTa: '',
       ngayKhoiChieu: '',
       dangChieu: false,
       sapChieu: false,
-      hot: false,
+      hot: false.valueOf,
       danhGia: 0,
-      hinhAnh: {},
+      // image: {},
     },
     onSubmit: (values) => {
       console.log('values', values);
-      values.maNhom = GROUPID;
+      // values.maNhom = GROUPID;
       //Tạo đối tượng formData =>  Đưa giá trị values từ formik vào formData
       let formData = new FormData();
+      
       for (let key in values) {
-        if (key !== 'hinhAnh') {
           formData.append(key, values[key]);
-        }
-        else {
-          formData.append('File', values.hinhAnh, values.hinhAnh.name);
-        }
       }
       //Gọi api gửi các giá trị formData về backend xử lý
-      dispatch(themPhimUploadHinhAction(formData));
+      dispatch(themPhimUploadHinhAction(values));
 
-      // console.log('formik', formData.get('File'));
+      // console.log('formik', formData.get('tenPhim'));
     }
 
   });
 
-  const handleChangeDatePicker = (value) => {
-    // console.log('datapickerchange',moment(value).format('DD/MM/YYYY'));
-    let ngayKhoiChieu = moment(value).format('DD/MM/YYYY');
-    formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu);
-  };
+  // const handleChangeDatePicker = (value) => {
+  //   // console.log('datapickerchange',moment(value).format('DD/MM/YYYY'));
+  //   let ngayKhoiChieu = moment(value).format('DD/MM/YYYY');
+  //   formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu);
+  // };
 
   const handleChangeSwitch = (name) => {
     return (value) => {
@@ -76,22 +74,22 @@ const Edit = () => {
     setComponentSize(size);
   };
 
-  const handleChangeFile = (e) => {
-    //Lấy file ra từ e
-    let file = e.target.files[0];
-    if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/gif' || file.type === 'image/png') {
-      //Tạo đối tượng để đọc file
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        // console.log(e.target.result);
-        setImgSrc(e.target.result);//Hình base 64
+  // const handleChangeFile = (e) => {
+  //   //Lấy file ra từ e
+  //   let file = e.target.files[0];
+  //   if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/gif' || file.type === 'image/png') {
+  //     //Tạo đối tượng để đọc file
+  //     let reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = (e) => {
+  //       // console.log(e.target.result);
+  //       setImgSrc(e.target.result);//Hình base 64
 
-      }
-      //Đem dữ liệu file lưu vào formik
-      formik.setFieldValue('hinhAnh', file);
-    };
-  };
+  //     }
+  //     //Đem dữ liệu file lưu vào formik
+  //     formik.setFieldValue('image', file);
+  //   };
+  // };
   return (
 
     <Form
@@ -117,18 +115,24 @@ const Edit = () => {
           <Radio.Button value="large">Large</Radio.Button>
         </Radio.Group>
       </Form.Item>
+      <Form.Item label="Mã phim">
+        <Input name="maPhim"  onChange={formik.handleChange } />
+      </Form.Item>
       <Form.Item label="Tên phim">
-        <Input name="tenPhim" name="tenPhim" onChange={formik.handleChange} />
+        <Input name="tenPhim"  onChange={formik.handleChange} />
+      </Form.Item>
+      <Form.Item label="Link ảnh">
+        <Input name="hinhAnh"  onChange={formik.handleChange} />
       </Form.Item>
       <Form.Item label="Trailer" >
-        <Input name="trailer" name="trailer" onChange={formik.handleChange} />
+        <Input name="trailer"  onChange={formik.handleChange} />
       </Form.Item>
       <Form.Item label="Mô tả">
-        <Input name="moTa" name="moTa" onChange={formik.handleChange} />
+        <Input name="moTa"  onChange={formik.handleChange} />
       </Form.Item>
-      <Form.Item label="Ngày khởi chiếu">
+      {/* <Form.Item label="Ngày khởi chiếu">
         <DatePicker format={"DD/MM/YYYY"} onChange={handleChangeDatePicker} />
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item label="Đang chiếu" >
         <Switch onChange={handleChangeSwitch('dangChieu')} />
       </Form.Item>
@@ -140,7 +144,7 @@ const Edit = () => {
       </Form.Item>
 
 
-      <Form.Item label="Số sao">
+      {/* <Form.Item label="Số sao">
         <InputNumber onChange={handleChangeInputNumber('danhGia')} min={1} max={10} />
       </Form.Item>
       <Form.Item label="Hình ảnh">
@@ -161,7 +165,7 @@ const Edit = () => {
         <img
           style={{ width: 150, height: 150 }} src={imgSrc} alt="..." />
 
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item label="Tác vụ">
         <button type='submit' className='bg-blue-600 text-white p-2'>Thêm phim</button>

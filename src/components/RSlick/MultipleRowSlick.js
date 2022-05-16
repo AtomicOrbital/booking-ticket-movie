@@ -1,87 +1,82 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
-import { LeftOutlined, RightOutline } from '@ant-design/icons'
-import styleSlick from './MultipleRowSlick.module.css';
-import Film from '../Film/Film'
+import styleSlick from "./MultipleRowSlick.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import Film_Flip from "../Film/Film_Flip";
-import { SET_FILM_DANG_CHIEU, SET_FILM_SAP_CHIEU } from "../../redux/actions/types/QuanLyPhimType";
 import { CSSTransition } from "react-transition-group";
+import {
+  SET_FILM_DANG_CHIEU,
+  SET_FILM_SAP_CHIEU,
+} from "../../redux/actions/types/QuanLyPhimType";
+import Film from "../Film/Film";
 
 function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} ${styleSlick['slick-prev']}`}
-            style={{ ...style, display: "block", color: "black" }}
-            onClick={onClick}
-        />
-    );
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={`${className} ${styleSlick["slick-prev"]}`}
+      style={{ ...style, display: "block", top: "45%" }}
+      onClick={onClick}
+    ></div>
+  );
 }
-
-
 
 function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} ${styleSlick['slick-prev']}`}
-            style={{ ...style, display: "block" }}
-            onClick={onClick}
-        />
-    );
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={`${className} ${styleSlick["slick-prev"]}`}
+      style={{ ...style, display: "block", left: "-62px", top: "45%" }}
+      onClick={onClick}
+    ></div>
+  );
 }
 
-
 const MultipleRowSlick = (props) => {
-    const [show, setShow] = useState(false);
-    const [trailer, setTrailer] = useState("");
-    const dispatch = useDispatch();
-    const { dangChieu, sapChieu } = useSelector(state => state.QuanLyPhimReducer);
+  const [show, setShow] = useState(false);
+  const [trailer, setTrailer] = useState("");
+  const dispatch = useDispatch();
+  const { dangChieu, sapChieu } = useSelector(
+    (state) => state.QuanLyPhimReducer
+  );
+  const renderFilms = () => {
+    return props.arrFilm.slice(0, 24).map((item, index) => {
+      return (
+        <div
+          className="mt-2 relative film "
+          key={index}
+          onClick={() => {
+            setTrailer(item.trailer);
+          }}
+        >
+          <Film phim={item} />
+          <button onClick={() => setShow(true)} className="play-btn">
+            <img src="./img/play-video.png" alt="playvideo" />
+          </button>
+        </div>
+      );
+    });
+  };
+  let activeClassDC = dangChieu === true ? "active_Film" : "none_active_Film";
+  let activeClassSC = sapChieu === true ? "active_Film" : "none_active_Film";
 
+  const settings = {
+    className: "center  ",
+    centerMode: true,
+    infinite: true,
+    centerPadding: 0,
+    slidesToShow: 2,
+    speed: 500,
+    rows: 2,
+    slidesPerRow: 2,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
 
-
-    const renderFilms = () => {
-
-        return props.arrFilm.slice(0, 10).map((item, index) => {
-            return (<div className={`${styleSlick['width-item']}`} key={index} onClick={() => {
-                setTrailer(item.trailer);
-            }} >
-                <Film_Flip item={item} />
-                <button onClick={() => setShow(true)} className="play-btn">
-                    <img src="./img/play-video.png" alt="playvideo" />
-                </button>
-            </div>
-            );
-        });
-    };
-
-    let activeClassDangChieu = dangChieu === true ? 'active_Film' : 'none_active_Film';
-    let activeClassSapChieu = sapChieu === true ? 'active_Film' : 'none_active_Film';
-
-    console.log('activeClassSapChieu', activeClassSapChieu);
-
-    const settings = {
-        className: "center variable-width",
-        centerMode: true,
-        infinite: true,
-        centerPadding: "180px",
-        slidesToShow: 2,
-        speed: 500,
-        rows: 1,
-        slidesPerRow: 2,
-        variableWidth: true,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />
-    };
-
-
-
-    return (
-        <div className="container relative">
+  return (
+    <div className="container relative">
       <div className="text-center mb-4">
         <button
-          className={`${styleSlick[activeClassDangChieu]} px-8 py-3 font-semibold rounded-full bg-white text-gray-800 border-gray-800 border mr-3`}
+          className={`${styleSlick[activeClassDC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border mr-2`}
           onClick={() => {
             const action = { type: SET_FILM_DANG_CHIEU };
             dispatch(action);
@@ -90,7 +85,7 @@ const MultipleRowSlick = (props) => {
           PHIM ĐANG CHIẾU
         </button>
         <button
-          className={`${styleSlick[activeClassSapChieu]} px-8 py-3 font-semibold rounded-full bg-white text-gray-800 border-gray-800 border`}
+          className={`${styleSlick[activeClassSC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border`}
           onClick={() => {
             const action = { type: SET_FILM_SAP_CHIEU };
             dispatch(action);
@@ -122,9 +117,7 @@ const MultipleRowSlick = (props) => {
         </CSSTransition>
       </div>
     </div>
-    );
-}
-
-
+  );
+};
 
 export default MultipleRowSlick;

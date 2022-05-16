@@ -21,94 +21,94 @@ import axios from 'axios';
 
 const Addnew = () => {
   let formData = new FormData();
-  const url = 'https://phimapi.herokuapp.com/api/QuanLyPhim/ThemAnh'
+  const url = 'https://phimapi.herokuapp.com/api/QuanLyPhim/ThemAnh';
   const config = {
-            headers:{
-              'Content-Type': 'multipart/form-data'
-            }
-          }
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  }
   const [componentSize, setComponentSize] = useState('default');
   const [imgSrc, setImgSrc] = useState('');
   const dispatch = useDispatch()
   const [file, setfile] = useState(null);
   const formik = useFormik({
     initialValues: {
-      tenPhim: '',
-      trailer: '',
-      moTa: '',
-      ngayKhoiChieu: '',
-      dangChieu: false,
-      sapChieu: false,
-      hot: false,
-      danhGia: 0,
+      // tenPhim: '',
+      // trailer: '',
+      // moTa: '',
+      // ngayKhoiChieu: '',
+      // dangChieu: false,
+      // sapChieu: false,
+      // hot: false,
+      // danhGia: 0,
       image: {},
     },
     onSubmit: (values) => {
       console.log('values', values);
       // values.maNhom = GROUPID;
       //Tạo đối tượng formData =>  Đưa giá trị values từ formik vào formData
-      
-      for (let key in values) {
-        if (key !== 'image') {
-          formData.append(key, values[key]);
-        }
-        else {
+    
+      // for (let key in values) {
+      //   if (key !== 'image') {
+      //     formData.append(key, values[key]);
+      //   }
+      //   else {
           formData.append('image', file);
-          
-          
-        axios
-          .post(url, formData, config)
-          .then((content)=>{
-              
-              console.log('link_Anh',content);
+
+
+          axios
+            .post(url, formData, config)
+            .then((content) => {
+
+              console.log('link_Anh', content);
               alert("Thêm ảnh thành công");
-          })
-          .catch((err) =>{
-            console.log('err',err);
-          })
-        }
-      }
+            })
+            .catch((err) => {
+              console.log('err', err);
+            })
+        // }
+      // }
       // const config = { 
       //   headers :{
       //     'content-type':'multipart/form-data',
       //   },
       // };
-        
+
       //Gọi api gửi các giá trị formData về backend xử lý
-      dispatch(themPhimUploadHinhAction(formData));
+      // dispatch(themPhimUploadHinhAction(formik));
 
       // console.log('formik', formData.get('File'));
     }
 
   });
 
-  const handleChangeDatePicker = (value) => {
-    // console.log('datapickerchange',moment(value).format('DD/MM/YYYY'));
-    let ngayKhoiChieu = moment(value).format('DD/MM/YYYY');
-    // formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu);
-    formData.append('ngayKhoiChieu', ngayKhoiChieu);
-  };
+  // const handleChangeDatePicker = (value) => {
+  //   // console.log('datapickerchange',moment(value).format('DD/MM/YYYY'));
+  //   let ngayKhoiChieu = moment(value).format('DD/MM/YYYY');
+  //   // formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu);
+  //   formData.append('ngayKhoiChieu', ngayKhoiChieu);
+  // };
 
-  const handleChangeSwitch = (name) => {
-    return (value) => {
-      // formik.setFieldValue(name, value)
-      formData.append('name', value);
-    };
-  };
-  const handleChangeInputNumber = (name) => {
-    return (value) => {
-      // formik.setFieldValue(name, value);
-      formData.append('name', value);
-    };
-  };
+  // const handleChangeSwitch = (name) => {
+  //   return (value) => {
+  //     // formik.setFieldValue(name, value)
+  //     formData.append('name', value);
+  //   };
+  // };
+  // const handleChangeInputNumber = (name) => {
+  //   return (value) => {
+  //     // formik.setFieldValue(name, value);
+  //     formData.append('name', value);
+  //   };
+  // };
 
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
 
   const handleChangeFile = (e) => {
-      setfile(e.target.files[0]);
-    };
+    setfile(e.target.files[0]);
+  };
 
   return (
 
@@ -127,8 +127,8 @@ const Addnew = () => {
       onValuesChange={onFormLayoutChange}
       size={componentSize}
     >
-      <h3>Thêm phim mới</h3>
-      <Form.Item label="Form Size" name="size">
+      <h3>Thêm ảnh mới</h3>
+      {/* <Form.Item label="Form Size" name="size">
         <Radio.Group>
           <Radio.Button value="small">Small</Radio.Button>
           <Radio.Button value="default">Default</Radio.Button>
@@ -160,9 +160,9 @@ const Addnew = () => {
 
       <Form.Item label="Số sao">
         <InputNumber onChange={handleChangeInputNumber('danhGia')} min={1} max={10} />
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item label="Hình ảnh">
-        <input type='file' onChange={handleChangeFile}
+        <input type='file' name='image' onChange={handleChangeFile}
           accept="
             image/apng
             ,image/jpg

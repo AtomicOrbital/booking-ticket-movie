@@ -1,10 +1,17 @@
 import Film from "../../components/Film/Film";
-import { SET_DANH_SACH_PHIM, SET_FILM_DANG_CHIEU, SET_FILM_SAP_CHIEU } from "../actions/types/QuanLyPhimType"
+import { SET_DANH_SACH_PHIM, SET_FILM_DANG_CHIEU, SET_FILM_SAP_CHIEU, SET_DANH_SACH_ANH } from "../actions/types/QuanLyPhimType"
 import { SET_CHI_TIET_PHIM } from "../actions/types/QuanLyRapType";
 
 
 
 const stateDefault = {
+    arrAnh:[{
+        "_id": "62813b1712589fa12dd51f50",
+        "link": "https://phimapi.herokuapp.com/uploads/1652636439639.png",
+        // "createdAt": "2022-05-15T17:40:39.647Z",
+        // "updatedAt": "2022-05-15T17:40:39.647Z",
+        // "__v": 0
+    }],
     arrFilm: [
         {
             "maPhim": 9590,
@@ -38,6 +45,7 @@ const stateDefault = {
     dangChieu: true,
     sapChieu: true,
     arrFilmDefault: [],
+    arrAnhDefault: [],
     filmDetail:{},
 
     thongTinPhim:{}
@@ -46,6 +54,11 @@ const stateDefault = {
 export const QuanLyPhimReducer = (state = stateDefault, action) => {
     switch (action.type) {
 
+        case SET_DANH_SACH_ANH : {
+            state.arrAnh = action.arrAnh;
+            state.arrAnhDefault = state.arrAnh;
+            return{...state}
+        }
         case SET_DANH_SACH_PHIM : {
             state.arrFilm = action.arrFilm;
             state.arrFilmDefault = state.arrFilm;

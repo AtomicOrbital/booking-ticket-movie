@@ -1,10 +1,10 @@
 import { quanLyPhimService } from "../../services/QuanLyPhimService";
-import { SET_DANH_SACH_PHIM, SET_THONG_TIN_PHIM } from "./types/QuanLyPhimType";
+import { SET_DANH_SACH_PHIM, SET_THONG_TIN_PHIM, SET_DANH_SACH_ANH } from "./types/QuanLyPhimType";
 import { history } from "../../App";
 
 
 
-export const layDanhSachPhimAction = () => {
+export const layDanhSachPhimAction = (tenPhim='') => {
 
     return async (dispatch) => {
         try {
@@ -54,3 +54,23 @@ export const layThongTinPhimAction =  (maPhim) => {
         }
     };
 }
+export const layDanhSachAnhAction =  () => {
+    return async (dispatch) => {
+        try {
+            //Sử dụng tham số thamSo
+            const result = await quanLyPhimService.layDanhSachAnh();
+
+   
+
+            dispatch({
+                type:SET_DANH_SACH_ANH,
+                arrAnh: result.data.content
+
+            })
+            
+        }catch (errors) {
+            console.log('errors',errors);
+        }
+    };
+}
+

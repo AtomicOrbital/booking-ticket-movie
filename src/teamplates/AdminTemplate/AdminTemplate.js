@@ -77,7 +77,7 @@ const AdminTemplate = (props) => { //path, exact, Component
 
                             </Menu.Item>
                             <Menu.Item key="11" icon={<FileOutlined />}>
-                                <NavLink to="/admin/films/addnew">Add new</NavLink>
+                                <NavLink to="/admin/films/addnew">Add Image</NavLink>
 
 
                             </Menu.Item>
