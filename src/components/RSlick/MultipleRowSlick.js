@@ -60,7 +60,7 @@ const MultipleRowSlick = (props) => {
   let activeClassSC = sapChieu === true ? "active_Film" : "none_active_Film";
 
   const settings = {
-    className: "center  ",
+    className: "center",
     centerMode: true,
     infinite: true,
     centerPadding: 0,
@@ -76,7 +76,7 @@ const MultipleRowSlick = (props) => {
     <div className="container relative">
       <div className="text-center mb-4">
         <button
-          className={`${styleSlick[activeClassDC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border mr-2`}
+          className={`${styleSlick[activeClassDC]} px-8 py-3 font-semibold rounded-full bg-white text-gray-800 border-gray-800 border mr-2`}
           onClick={() => {
             const action = { type: SET_FILM_DANG_CHIEU };
             dispatch(action);
@@ -85,7 +85,7 @@ const MultipleRowSlick = (props) => {
           PHIM ĐANG CHIẾU
         </button>
         <button
-          className={`${styleSlick[activeClassSC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border`}
+          className={`${styleSlick[activeClassSC]} px-8 py-3 font-semibold rounded-full bg-white text-gray-800 border-gray-800 border`}
           onClick={() => {
             const action = { type: SET_FILM_SAP_CHIEU };
             dispatch(action);

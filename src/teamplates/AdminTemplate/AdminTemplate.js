@@ -41,11 +41,14 @@ const AdminTemplate = (props) => { //path, exact, Component
         return <Redirect to='/' />
     }
 
-    if (userLogin.maLoaiNguoiDung !== 'QuanTri') {
-        alert('Bạn không có quyền truy cập vào trang này !')
+    if (userLogin == 'admin') {
+        alert('Bạn có quyền truy cập vào trang này !')
         return <Redirect to='/' />
-
     }
+    // else{
+    //     alert('Bạn không có quyền truy cập vào trang này !')
+    //     return <Redirect to='/' />
+    // }
 
     const operations = <Fragment>
         {!_.isEmpty(userLogin) ? <Fragment> <button onClick={() => {
@@ -68,9 +71,9 @@ const AdminTemplate = (props) => { //path, exact, Component
                         <img src="https://phimapi.herokuapp.com/uploads/Logo.png" alt='logo' className='h-12' to='/home' />
                     </NavLink>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1" icon={<UserOutlined />}>
+                        {/* <Menu.Item key="1" icon={<UserOutlined />}>
                             <NavLink to="/admin/users">Users</NavLink>
-                        </Menu.Item>
+                        </Menu.Item> */}
                         <SubMenu key="sub1" icon={<FileOutlined />} title="Films">
                             <Menu.Item key="10" icon={<FileOutlined />}>
                                 <NavLink to="/admin/films">Films</NavLink>

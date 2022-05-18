@@ -31,7 +31,7 @@ export default function Film(props) {
       </h1>
 
       <button
-        className="py-1 btn-booking bg-yellow-500 font-bold text-white text-xl rounded-md"
+        className="py-1 btn-booking bg-yellow-500 font-bold text-white text-2xl rounded-md"
         onClick={() => {
           history.push(`/detail/${phim.maPhim}`);
         }}
